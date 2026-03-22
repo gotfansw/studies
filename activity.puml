@@ -1,0 +1,36 @@
+@startuml
+skinparam activity {
+  BackgroundColor #E8E6FD
+  BorderColor #534AB7
+  ArrowColor #534AB7
+  StartColor #26215C
+  EndColor #26215C
+  DiamondBackgroundColor #EEEDFE
+  DiamondBorderColor #534AB7
+}
+
+start
+
+:Открыть приложение;
+:Войти в систему;
+
+if (Авторизован?) then (Нет)
+  :Регистрация;
+else (Да)
+endif
+
+:Выбрать специалиста;
+:Выбрать дату и время;
+
+if (Слот свободен?) then (Нет)
+  :Выбрать другой слот;
+  :Выбрать дату и время;
+else (Да)
+endif
+
+:Подтвердить запись;
+:Отправить уведомление пациенту;
+:Сохранить запись в БД;
+
+stop
+@enduml

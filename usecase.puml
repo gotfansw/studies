@@ -1,0 +1,39 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam usecase {
+  BackgroundColor #E8E6FD
+  BorderColor #534AB7
+  ArrowColor #534AB7
+  ActorBorderColor #534AB7
+  ActorBackgroundColor #EEEDFE
+}
+
+actor "Пациент" as Patient
+actor "Врач" as Doctor
+actor "Администратор" as Admin
+
+rectangle "Система записи к врачу" {
+  usecase "Записаться на приём" as UC1
+  usecase "Выбрать врача" as UC2
+  usecase "Выбрать дату и время" as UC3
+  usecase "Получить уведомление" as UC4
+  usecase "Отменить запись" as UC5
+  usecase "Просмотреть расписание" as UC6
+
+  UC1 .> UC2 : <<include>>
+  UC1 .> UC3 : <<include>>
+  UC1 .> UC4 : <<extend>>
+}
+
+Patient --> UC1
+Patient --> UC5
+Patient --> UC4
+
+Doctor --> UC6
+Doctor --> UC2
+Doctor --> UC3
+
+Admin --> UC5
+Admin --> UC6
+@enduml
