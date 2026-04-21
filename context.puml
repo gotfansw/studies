@@ -1,0 +1,43 @@
+@startuml context
+skinparam {
+  BackgroundColor #FFFFFF
+  ArrowColor #1D9E75
+  BorderColor #534AB7
+}
+skinparam rectangle {
+  BackgroundColor #EEEDFE
+  BorderColor #534AB7
+  FontColor #26215C
+  FontStyle bold
+}
+skinparam actor {
+  BackgroundColor #E1F5EE
+  BorderColor #0F6E56
+  FontColor #085041
+}
+skinparam database {
+  BackgroundColor #FAEEDA
+  BorderColor #854F0B
+  FontColor #633806
+}
+
+title Диаграмма контекста — Веб-приложение
+
+actor "Клиент\n(веб / мобильный)" as Client
+actor "Администратор" as Admin
+
+rectangle "Веб-приложение\n(основная система)" as System
+
+database "Email-сервис\n(SendGrid / SMTP)" as Email
+database "Платёжная система\n(Stripe / PayPal)" as Payment
+
+Client --> System : HTTPS
+Admin --> System : HTTPS
+System --> Email : SMTP
+System --> Payment : REST
+
+note bottom of System
+——> инициирует действие
+---> получает уведомление (пунктир)
+end note
+@enduml
