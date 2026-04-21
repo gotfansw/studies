@@ -1,0 +1,45 @@
+@startuml components
+skinparam {
+  BackgroundColor #FFFFFF
+  ArrowColor #1D9E75
+  BorderColor #534AB7
+}
+skinparam rectangle {
+  BackgroundColor #EEEDFE
+  BorderColor #534AB7
+  FontColor #26215C
+  FontStyle bold
+}
+skinparam component {
+  BackgroundColor #E6F1FB
+  BorderColor #185FA5
+  FontColor #042C53
+}
+
+title Диаграмма компонентов — API Gateway
+
+package "API Gateway" {
+  rectangle "Request Router\n(маршрутизация запросов)" as Router
+
+  component "Auth Middleware\n(проверка JWT)" as AuthMW
+  component "Rate Limiter\n(ограничение запросов)" as RateLimit
+  component "Logger\n(аудит · трассировка)" as Logger
+
+  component "Users Controller\n(/api/users/*)" as UsersCtrl
+  component "Orders Controller\n(/api/orders/*)" as OrdersCtrl
+  component "Payments Controller\n(/api/payments/*)" as PayCtrl
+}
+
+Router --> AuthMW : проверка
+Router --> RateLimit : лимит
+Router --> Logger : лог
+
+RateLimit --> UsersCtrl
+RateLimit --> OrdersCtrl
+RateLimit --> PayCtrl
+
+note bottom of Router
+——> инициирует действие
+---> получает уведомление (пунктир)
+end note
+@enduml
