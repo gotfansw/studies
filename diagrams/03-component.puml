@@ -1,0 +1,17 @@
+@startuml
+title Telegram — C4 Level 3 (Components)
+
+package “Message Service” {
+
+component “Chat Controller”
+component “Message Processor”
+component “Delivery Manager”
+component “Notification Module”
+
+}
+
+“Chat Controller” –> “Message Processor”
+“Message Processor” –> “Delivery Manager”
+“Delivery Manager” –> “Notification Module”
+
+@enduml
