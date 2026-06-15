@@ -1,0 +1,40 @@
+@startuml containers
+skinparam {
+  BackgroundColor #FFFFFF
+  ArrowColor #1D9E75
+  BorderColor #534AB7
+}
+skinparam rectangle {
+  BackgroundColor #EEEDFE
+  BorderColor #534AB7
+  FontColor #26215C
+  FontStyle bold
+}
+skinparam database {
+  BackgroundColor #FAEEDA
+  BorderColor #854F0B
+  FontColor #633806
+}
+skinparam queue {
+  BackgroundColor #FAECE7
+  BorderColor #993C1D
+  FontColor #4A1B0C
+}
+
+title Диаграмма контейнеров — Веб-приложение
+
+rectangle "SPA фронтенд\n(React / Vue · TypeScript)" as SPA
+rectangle "API Gateway\n(REST · JSON · JWT)" as Gateway
+rectangle "Auth Service\n(OAuth2 · JWT)" as Auth
+rectangle "Business Logic\n(Node.js / Python)" as BL
+queue "Message Queue\n(RabbitMQ / Kafka)" as Queue
+database "PostgreSQL\n(основные данные)" as PG
+database "Redis\n(кеш · сессии)" as Redis
+
+SPA --> Gateway : REST
+Gateway --> Auth : verify
+Gateway --> BL : calls
+BL --> Queue : publish
+BL --> PG : read / write
+BL --> Redis : read / write
+@enduml
