@@ -1,0 +1,21 @@
+@startuml
+
+title Telegram — C4 Level 4 (Code)
+
+class MessageController {
++send()
++delete()
+}
+
+class MessageService {
++process()
+}
+
+class MessageRepository {
++save()
+}
+
+MessageController –> MessageService
+MessageService –> MessageRepository
+
+@enduml
