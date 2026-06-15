@@ -1,3 +1,4 @@
+@startuml
 title Telegram — C4 Level 2 (Containers)
 
 package “Telegram” {
