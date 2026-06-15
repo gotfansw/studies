@@ -1,0 +1,19 @@
+title Telegram — C4 Level 1 (System Context)
+
+actor User
+actor Administrator
+
+rectangle “Telegram System” {
+}
+
+rectangle “Notification Service”
+rectangle “Media Storage”
+rectangle “Authentication Service”
+
+User –> “Telegram System” : send messages\nview chats
+Administrator –> “Telegram System” : moderation
+“Telegram System” –> “Notification Service”
+“Telegram System” –> “Media Storage”
+“Telegram System” –> “Authentication Service”
+
+@enduml
