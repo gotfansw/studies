@@ -1,0 +1,26 @@
+@startuml
+
+
+left to right direction
+
+actor User
+
+rectangle Telegram {
+
+usecase “Register”
+usecase “Login”
+usecase “Send Message”
+usecase “Create Chat”
+usecase “Upload Media”
+usecase “Receive Notification”
+
+}
+
+User –> “Register”
+User –> “Login”
+User –> “Send Message”
+User –> “Create Chat”
+User –> “Upload Media”
+User –> “Receive Notification”
+
+@enduml

@@ -1,0 +1,25 @@
+
+@startuml
+
+
+start
+
+:Open Telegram;
+
+if (Authorized?) then (Yes)
+
+:Open Chat;
+:Type Message;
+:Send Message;
+
+else
+
+:Login;
+
+endif
+
+:Message Delivered;
+
+stop
+
+@enduml

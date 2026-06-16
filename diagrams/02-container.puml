@@ -1,0 +1,29 @@
+@startuml
+title Telegram — C4 Level 2 (Containers)
+
+package “Telegram” {
+
+component “Mobile App”
+component “Web Client”
+component “API Gateway”
+
+database “User DB”
+database “Message DB”
+
+component “Message Service”
+component “Media Service”
+component “Auth Service”
+
+}
+
+“Mobile App” –> “API Gateway”
+“Web Client” –> “API Gateway”
+
+“API Gateway” –> “Auth Service”
+“API Gateway” –> “Message Service”
+“API Gateway” –> “Media Service”
+
+“Auth Service” –> “User DB”
+“Message Service” –> “Message DB”
+
+@enduml
